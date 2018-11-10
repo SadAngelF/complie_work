@@ -3,4 +3,4 @@
 
 
 
-Author:SadAngel Sunrisulfr
+Author:SadAngel Sunrisulfr Lamperouges
