@@ -7,39 +7,39 @@ class word:
         self.keywards = {}
 
         # 关键字部分
-        self.keywards['False'] = 101
-        self.keywards['class'] = 102
-        self.keywards['finally'] = 103
-        self.keywards['is'] = 104
-        self.keywards['return'] = 105
-        self.keywards['None'] = 106
-        self.keywards['continue'] = 107
-        self.keywards['for'] = 108
-        self.keywards['lambda'] = 109
-        self.keywards['try'] = 110
-        self.keywards['True'] = 111
-        self.keywards['def'] = 112
-        self.keywards['from'] = 113
-        self.keywards['nonlocal'] = 114
-        self.keywards['while'] = 115
-        self.keywards['and'] = 116
-        self.keywards['del'] = 117
-        self.keywards['global'] = 118
-        self.keywards['not'] = 119
-        self.keywards['with'] = 120
-        self.keywards['as'] = 121
-        self.keywards['elif'] = 122
-        self.keywards['if'] = 123
-        self.keywards['or'] = 124
-        self.keywards['yield'] = 125
-        self.keywards['assert'] = 126
-        self.keywards['else'] = 127
-        self.keywards['import'] = 128
-        self.keywards['pass'] = 129
-        self.keywards['break'] = 130
-        self.keywards['except'] = 131
-        self.keywards['in'] = 132
-        self.keywards['raise'] = 133
+        self.keywards['auto'] = 101
+        self.keywards['break'] = 102
+        self.keywards['case'] = 103
+        self.keywards['char'] = 104
+        self.keywards['const'] = 105
+        self.keywards['continue'] = 106
+        self.keywards['default'] = 107
+        self.keywards['do'] = 108
+        self.keywards['double'] = 109
+        self.keywards['else'] = 110
+        self.keywards['enum'] = 111
+        self.keywards['extern'] = 112
+        self.keywards['float'] = 113
+        self.keywards['for'] = 114
+        self.keywards['goto'] = 115
+        self.keywards['if'] = 116
+        self.keywards['int'] = 117
+        self.keywards['long'] = 118
+        self.keywards['register'] = 119
+        self.keywards['return'] = 120
+        self.keywards['short'] = 121
+        self.keywards['signed'] = 122
+        self.keywards['sizeof'] = 123
+        self.keywards['static'] = 124
+        self.keywards['struct'] = 125
+        self.keywards['switch'] = 126
+        self.keywards['typedef'] = 127
+        self.keywards['union'] = 128
+        self.keywards['unsigned'] = 129
+        self.keywards['void'] = 130
+        self.keywards['volatile'] = 131
+        self.keywards['while'] = 132
+        self.keywards['#include'] = 133
 
         # 符号
         self.keywards['+'] = 201
@@ -62,6 +62,17 @@ class word:
         self.keywards['#'] = 218
         self.keywards['|'] = 219
         self.keywards[','] = 220
+        self.keywards[';'] = 221
+        self.keywards['\''] = 222
+        self.keywards['\"'] = 223
+        self.keywards['!='] = 224
+        self.keywards['<>'] = 224
+        self.keywards['<='] = 225
+        self.keywards['=<'] = 225
+        self.keywards['=>'] = 226
+        self.keywards['>='] = 226
+        self.keywards['=='] = 227
+        
         # 变量
         # self.keywards['var'] = 301
 
@@ -90,9 +101,9 @@ class word:
                     if sign == 0:
                         if read[i] == ' ':
                             continue
-                    if read[i] == '#':
-                        break
-                    elif read[i] == ' ':
+                    #if read[i] == '\\':
+                    #    break              #！！！！！未解决！！！！解决注释问题，本来是这样，但是c语言中的注释是两个字符以上，因此作出修改，在后面识别注释符
+                    if read[i] == ' ':
                         if sign == 1:
                             continue
                         else:
@@ -108,8 +119,8 @@ class word:
                         if sign == 1:
                             continue
                         else:
-                            fp_write.write(' ')
                             sign = 1
+                            fp_write.write(' ')
                     elif read[i] == '"':
                         fp_write.write(read[i])
                         i += 1
@@ -184,11 +195,23 @@ class word:
         try:
             fp_read = open(filename, 'r')
             string = ""
-            sign = 0
+            sign = 0                        #sign=1处理单引号'，sign=2处理双引号"，sign=3处理双符号的，比如!=,<>,<=,=<,>=,=>,==
             while True:
                 read = fp_read.read(1)
                 if not read:
                     break
+                
+                if sign == 3:
+                    if read == '=' or read == '<' or read == '>':
+                        string += read
+                        self.save(string)
+                        string = ""
+                        sign = 0
+                        continue
+                    else:
+                        self.save(string)
+                        string = ""
+                        sign = 0
 
                 if read == ' ':
                     if len(string.strip()) < 1:
@@ -245,12 +268,14 @@ class word:
                         self.save('}')
                 elif read == '<':
                     self.save(string)
-                    string = ""
-                    self.save('<')
+                    string = "<"
+                    sign = 3
+                    #self.save('<')
                 elif read == '>':
                     self.save(string)
-                    string = ""
-                    self.save('>')
+                    string = ">"
+                    sign = 3
+                    #self.save('>')
                 elif read == ',':
                     self.save(string)
                     string = ""
@@ -280,14 +305,24 @@ class word:
                         self.save(string)
                         string = ""
                         self.save(':')
+                elif read == ';':
+                    self.save(string)
+                    string = ""
+                    self.save(';')
                 elif read == '+':
                     self.save(string)
                     string = ""
                     self.save('+')
                 elif read == '=':
                     self.save(string)
-                    string = ""
-                    self.save('=')
+                    string = "="
+                    sign = 3
+                    #self.save('=')
+                elif read == '！':
+                    self.save(string)
+                    string = "!"
+                    sign = 3
+                    #self.save('！')
                 else:
                     string += read
 
