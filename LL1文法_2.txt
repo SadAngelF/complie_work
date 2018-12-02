@@ -1,0 +1,68 @@
+S :=HEAD VS MAIN
+HEAD := 133 401 HEAD | $
+
+VS:= VS_A VS_B VS |$
+VS_A := TYPE var
+VS_B := VAR_DE_ | VS_C
+VS_C := (F_PA) VS_D
+VS_D := ;| {FUN_B} 
+
+FUN_B := VAR_DE STATE
+MAIN := int main {FUN_B}
+F_PA := TYPE var (F_PA_|$)
+F_PA_ := ;F_PA | $
+VAR_DE := TYPE var VAR_DE_ VAR_DE | $
+VAR_DE_ := ;| = OB;
+STATE := B_STATE STATE |$
+B_STATE := A_S | CY_S | FU_S |RE_S|IF_S|MUL_S
+A_S := var = OP_S;
+OP_S := OB OP OB
+OB := var | const
+OP := +|-|*|/|%
+RE_S := return OB;
+FU_S := var(PA);
+PA := OB PA_|$
+PA_ := ,PA|$
+MUL_S :={FUN_B}
+CY_S := while (CON) MUL_S|do MUL_S while (CON)|for(FOR1 CON; FOR_3)MUL_S
+FOR1 := A_S|;
+FOR3 := var = OP_S|$
+IF_S := if(CON) MUL_S IF_S_ 
+IF_S_ := else MUL_S | $
+CON := !var | OB CON_
+CON_ := < OB|> OB| == OB | >= OB| <=OB | $
+TYPE := float|int|double
+
+
+A_S        赋值语句
+B_STATE    基本语句    
+const	   常量		
+CON	   条件	
+CY_S	   循环语句			
+FUN_B	   函数主体  	
+FU_S	   函数调用	
+HEAD	   头文件	
+IF_S	   条件语句 	
+MAIN	   主函数
+MUL_S	   复合语句   
+OB	   操作数
+OP         运算符   
+OP_S       运算
+PA         参数(函数调用)
+RE_S       返回语句
+S 	   程序	
+STATE	   语句	
+TYPE       类型
+VAR	   变量名	
+VAR_DE	   变量定义	
+VS	   外部定义  	
+
+语句不包括单个变量以及无赋值表达式
+无字符串分析
+无数组的分析
+非终结符后面添加“_”是为了保证这些语句的LL(1)性  FOR1、FOR2为了满足LL(1)性
+return 返回值不包含函数调用语句
+
+
+
+
