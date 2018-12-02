@@ -1,7 +1,7 @@
 S :=HEAD VS MAIN
-HEAD := 133 401 HEAD | $
+HEAD := 133 401 HEAD| $                              float int double
 
-VS:= VS_A VS_B VS |$
+VS:= VS_A VS_B VS |$                                 int  
 VS_A := TYPE var
 VS_B := VAR_DE_ | VS_C
 VS_C := (F_PA) VS_D
@@ -9,11 +9,11 @@ VS_D := ;| {FUN_B}
 
 FUN_B := VAR_DE STATE
 MAIN := int main {FUN_B}
-F_PA := TYPE var (F_PA_|$)
-F_PA_ := ;F_PA | $
-VAR_DE := TYPE var VAR_DE_ VAR_DE | $
+F_PA := TYPE var (F_PA_)				
+F_PA_ := ;F_PA | $					)
+VAR_DE := TYPE var VAR_DE_ VAR_DE | $			var for while if } { return
 VAR_DE_ := ;| = OB;
-STATE := B_STATE STATE |$
+STATE := B_STATE STATE |$				}
 B_STATE := A_S | CY_S | FU_S |RE_S|IF_S|MUL_S
 A_S := var = OP_S;
 OP_S := OB OP OB
@@ -21,16 +21,16 @@ OB := var | const
 OP := +|-|*|/|%
 RE_S := return OB;
 FU_S := var(PA);
-PA := OB PA_|$
-PA_ := ,PA|$
+PA := OB PA_|$							)
+PA_ := ,PA|$							)
 MUL_S :={FUN_B}
 CY_S := while (CON) MUL_S|do MUL_S while (CON)|for(FOR1 CON; FOR_3)MUL_S
 FOR1 := A_S|;
-FOR3 := var = OP_S|$
+FOR3 := var = OP_S|$						)
 IF_S := if(CON) MUL_S IF_S_ 
-IF_S_ := else MUL_S | $
-CON := !var | OB CON_
-CON_ := < OB|> OB| == OB | >= OB| <=OB | $
+IF_S_ := else MUL_S | $						var for while if } {	return
+CON := !var | OB CON_							
+CON_ := < OB|> OB| == OB | >= OB| <=OB | $			)
 TYPE := float|int|double
 
 
