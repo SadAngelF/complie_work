@@ -1,0 +1,45 @@
+<program>	->	[int]<198>
+<198>	->	[IDN]<201>
+<201>	->	[(]<formal parameter list>[)]<function tail><program>
+<formal parameter list>	->	[int][IDN]<formal parameter list tail>
+<formal parameter list tail>	->	[,]<147>
+<147>	->	[int][IDN]
+<function tail>	->	[{]<program body>[}]
+<program body>	->	[return]<146>
+<146>	->	[IDN]<182>[;]
+<182>	->	[+][IDN]
+<program>	->	[int]<198>
+<198>	->	[IDN]<201>
+<201>	->	[(][)]<function tail>
+<function tail>	->	[{]<program body>[}]
+<program body>	->	[int]<variable list>[;]<program body>
+<variable list>	->	[IDN]<variable list tail>
+<variable list tail>	->	[,]<variable list>
+<variable list>	->	[IDN]<variable list tail>
+<variable list tail>	->	[,][IDN]
+<program body>	->	[IDN]<195><program body>
+<195>	->	[=][INUM][;]
+<program body>	->	[IDN]<195><program body>
+<195>	->	[=][INUM][;]
+<program body>	->	[while][(]<normal expr>[)]<loop tail><program body>
+<normal expr>	->	[IDN]<182>
+<182>	->	[<=][IDN]
+<loop tail>	->	[{]<program body>[}]
+<program body>	->	[if][(]<normal expr>[)]<loop tail><if tail>
+<normal expr>	->	[IDN]<182>
+<182>	->	[==][IDN]
+<loop tail>	->	[{]<program body>[}]
+<program body>	->	[IDN]<195>
+<195>	->	[=]<A>[;]
+<A>	->	[IDN]<182>
+<182>	->	[(]<actual argument list>[)]
+<actual argument list>	->	[IDN]<167>
+<167>	->	[,][IDN]
+<if tail>	->	[else]<loop tail>
+<loop tail>	->	[{]<program body>[}]
+<program body>	->	[IDN]<195>
+<195>	->	[=]<A>[;]
+<A>	->	[IDN]<182>
+<182>	->	[-][IDN]
+<program body>	->	[return]<146>
+<146>	->	[INUM][;]

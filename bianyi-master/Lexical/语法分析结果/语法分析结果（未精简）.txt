@@ -1,0 +1,195 @@
+<program>	->	[int]<data type modifier><pointer modifier><198>
+<data type modifier>	->	[Lambda]
+<pointer modifier>	->	[Lambda]
+<198>	->	[IDN]<201>
+<201>	->	[(]<formal parameter list>[)]<function tail><program>
+<formal parameter list>	->	[int]<data type modifier><pointer modifier>[IDN]<array in parameter><formal parameter list tail>
+<data type modifier>	->	[Lambda]
+<pointer modifier>	->	[Lambda]
+<array in parameter>	->	[Lambda]
+<formal parameter list tail>	->	[,]<147>
+<147>	->	[int]<data type modifier><pointer modifier>[IDN]<array in parameter><formal parameter list tail>
+<data type modifier>	->	[Lambda]
+<pointer modifier>	->	[Lambda]
+<array in parameter>	->	[Lambda]
+<formal parameter list tail>	->	[Lambda]
+<function tail>	->	[{]<program body>[}]
+<program body>	->	[return]<146><program body>
+<146>	->	[IDN]<182><167>[;]
+<182>	->	[+]<L><157><158><159><160><161><162><163><164><165><166>
+<L>	->	[IDN]<may call func><155><145><156>
+<may call func>	->	[Lambda]
+<155>	->	[Lambda]
+<145>	->	[Lambda]
+<156>	->	[Lambda]
+<157>	->	[Lambda]
+<158>	->	[Lambda]
+<159>	->	[Lambda]
+<160>	->	[Lambda]
+<161>	->	[Lambda]
+<162>	->	[Lambda]
+<163>	->	[Lambda]
+<164>	->	[Lambda]
+<165>	->	[Lambda]
+<166>	->	[Lambda]
+<167>	->	[Lambda]
+<program body>	->	[Lambda]
+<program>	->	[int]<data type modifier><pointer modifier><198>
+<data type modifier>	->	[Lambda]
+<pointer modifier>	->	[Lambda]
+<198>	->	[IDN]<201>
+<201>	->	[(]<formal parameter list>[)]<function tail><program>
+<formal parameter list>	->	[Lambda]
+<function tail>	->	[{]<program body>[}]
+<program body>	->	[int]<data type modifier><pointer modifier><variable list>[;]<program body>
+<data type modifier>	->	[Lambda]
+<pointer modifier>	->	[Lambda]
+<variable list>	->	[IDN]<array tail><single variable tail><variable list tail>
+<array tail>	->	[Lambda]
+<single variable tail>	->	[Lambda]
+<variable list tail>	->	[,]<pointer modifier><variable list>
+<pointer modifier>	->	[Lambda]
+<variable list>	->	[IDN]<array tail><single variable tail><variable list tail>
+<array tail>	->	[Lambda]
+<single variable tail>	->	[Lambda]
+<variable list tail>	->	[,]<pointer modifier><variable list>
+<pointer modifier>	->	[Lambda]
+<variable list>	->	[IDN]<array tail><single variable tail><variable list tail>
+<array tail>	->	[Lambda]
+<single variable tail>	->	[Lambda]
+<variable list tail>	->	[Lambda]
+<program body>	->	[IDN]<195><program body>
+<195>	->	[=]<A><167>[;]
+<A>	->	[INUM]<156><157><158><159><160><161><162><163><164><165><166>
+<156>	->	[Lambda]
+<157>	->	[Lambda]
+<158>	->	[Lambda]
+<159>	->	[Lambda]
+<160>	->	[Lambda]
+<161>	->	[Lambda]
+<162>	->	[Lambda]
+<163>	->	[Lambda]
+<164>	->	[Lambda]
+<165>	->	[Lambda]
+<166>	->	[Lambda]
+<167>	->	[Lambda]
+<program body>	->	[IDN]<195><program body>
+<195>	->	[=]<A><167>[;]
+<A>	->	[INUM]<156><157><158><159><160><161><162><163><164><165><166>
+<156>	->	[Lambda]
+<157>	->	[Lambda]
+<158>	->	[Lambda]
+<159>	->	[Lambda]
+<160>	->	[Lambda]
+<161>	->	[Lambda]
+<162>	->	[Lambda]
+<163>	->	[Lambda]
+<164>	->	[Lambda]
+<165>	->	[Lambda]
+<166>	->	[Lambda]
+<167>	->	[Lambda]
+<program body>	->	[while][(]<normal expr>[)]<loop tail><program body>
+<normal expr>	->	[IDN]<182><167>
+<182>	->	[<=]<J><159><160><161><162><163><164><165><166>
+<J>	->	[IDN]<may call func><155><145><156><157><158>
+<may call func>	->	[Lambda]
+<155>	->	[Lambda]
+<145>	->	[Lambda]
+<156>	->	[Lambda]
+<157>	->	[Lambda]
+<158>	->	[Lambda]
+<159>	->	[Lambda]
+<160>	->	[Lambda]
+<161>	->	[Lambda]
+<162>	->	[Lambda]
+<163>	->	[Lambda]
+<164>	->	[Lambda]
+<165>	->	[Lambda]
+<166>	->	[Lambda]
+<167>	->	[Lambda]
+<loop tail>	->	[{]<program body>[}]
+<program body>	->	[if][(]<normal expr>[)]<loop tail><if tail><program body>
+<normal expr>	->	[IDN]<182><167>
+<182>	->	[==]<I><160><161><162><163><164><165><166>
+<I>	->	[IDN]<may call func><155><145><156><157><158><159>
+<may call func>	->	[Lambda]
+<155>	->	[Lambda]
+<145>	->	[Lambda]
+<156>	->	[Lambda]
+<157>	->	[Lambda]
+<158>	->	[Lambda]
+<159>	->	[Lambda]
+<160>	->	[Lambda]
+<161>	->	[Lambda]
+<162>	->	[Lambda]
+<163>	->	[Lambda]
+<164>	->	[Lambda]
+<165>	->	[Lambda]
+<166>	->	[Lambda]
+<167>	->	[Lambda]
+<loop tail>	->	[{]<program body>[}]
+<program body>	->	[IDN]<195><program body>
+<195>	->	[=]<A><167>[;]
+<A>	->	[IDN]<182>
+<182>	->	[(]<actual argument list>[)]<155><145><156><157><158><159><160><161><162><163><164><165><166>
+<actual argument list>	->	[IDN]<182><167>
+<182>	->	[Lambda]
+<167>	->	[,]<A><167>
+<A>	->	[IDN]<182>
+<182>	->	[Lambda]
+<167>	->	[Lambda]
+<155>	->	[Lambda]
+<145>	->	[Lambda]
+<156>	->	[Lambda]
+<157>	->	[Lambda]
+<158>	->	[Lambda]
+<159>	->	[Lambda]
+<160>	->	[Lambda]
+<161>	->	[Lambda]
+<162>	->	[Lambda]
+<163>	->	[Lambda]
+<164>	->	[Lambda]
+<165>	->	[Lambda]
+<166>	->	[Lambda]
+<167>	->	[Lambda]
+<program body>	->	[Lambda]
+<if tail>	->	[else]<loop tail>
+<loop tail>	->	[{]<program body>[}]
+<program body>	->	[IDN]<195><program body>
+<195>	->	[=]<A><167>[;]
+<A>	->	[IDN]<182>
+<182>	->	[-]<L><157><158><159><160><161><162><163><164><165><166>
+<L>	->	[IDN]<may call func><155><145><156>
+<may call func>	->	[Lambda]
+<155>	->	[Lambda]
+<145>	->	[Lambda]
+<156>	->	[Lambda]
+<157>	->	[Lambda]
+<158>	->	[Lambda]
+<159>	->	[Lambda]
+<160>	->	[Lambda]
+<161>	->	[Lambda]
+<162>	->	[Lambda]
+<163>	->	[Lambda]
+<164>	->	[Lambda]
+<165>	->	[Lambda]
+<166>	->	[Lambda]
+<167>	->	[Lambda]
+<program body>	->	[Lambda]
+<program body>	->	[Lambda]
+<program body>	->	[return]<146><program body>
+<146>	->	[INUM]<156><157><158><159><160><161><162><163><164><165><166><167>[;]
+<156>	->	[Lambda]
+<157>	->	[Lambda]
+<158>	->	[Lambda]
+<159>	->	[Lambda]
+<160>	->	[Lambda]
+<161>	->	[Lambda]
+<162>	->	[Lambda]
+<163>	->	[Lambda]
+<164>	->	[Lambda]
+<165>	->	[Lambda]
+<166>	->	[Lambda]
+<167>	->	[Lambda]
+<program body>	->	[Lambda]
+<program>	->	[Lambda]

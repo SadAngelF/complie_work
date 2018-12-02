@@ -1,0 +1,179 @@
+178
+<program>	->	<statement><program>	程序	
+<program>	->	[Lambda]	程序为空	
+<statement>	->	<function statement>	语句（函数声明）	
+<statement>	->	<variable statement>	语句（变量声明）	
+<statement>	->	<data type definition>	语句（数据类型定义）	
+<statement>	->	[;]	语句（空语句）	
+<function statement>	->	<data type>[IDN][(]<formal parameter list>[)]<function tail>	函数声明	
+<function tail>	->	[;]	函数原型	
+<function tail>	->	<block>	函数定义	
+<variable statement>	->	<data type><variable list>[;]	变量声明	
+<data type>	->	<data type modifier><data type body><data type modifier><pointer modifier>	数据类型	
+<data type body>	->	<base data type>	数据类型（基本数据类型）	
+<data type body>	->	<user defined data type>	数据类型（用户自定义数据类型）	
+<data type modifier>	->	[unsigned]<data type modifier>	数据类型修饰符（unsigned)	
+<data type modifier>	->	[signed]<data type modifier>	数据类型修饰符（signed）	
+<data type modifier>	->	[const]<data type modifier>	数据类型修饰符（const）	
+<data type modifier>	->	[extern]<data type modifier>	数据类型修饰符（extern）	
+<data type modifier>	->	[static]<data type modifier>	数据类型修饰符（static）	
+<data type modifier>	->	[auto]<data type modifier>	数据类型修饰符（auto）	
+<data type modifier>	->	[Lambda]	数据类型修饰符（为空）	
+<pointer modifier>	->	[*]<const modifier><pointer modifier>	指针修饰符	
+<pointer modifier>	->	[Lambda]	指针修饰符	
+<const modifier>	->	[const]<const modifier>	const修饰符	
+<const modifier>	->	[Lambda]	无const修饰符	
+<data type definition>	->	<struct or union><data type definition name>[{]<struct inner>[}][;]	定义数据类型	
+<user defined data type>	->	<struct or union><data type definition name>[{]<struct inner>[}]	用户定义的数据类型	
+<user defined data type>	->	<struct or union>[IDN]	用户定义的数据类型	
+<struct or union>	->	[struct]	struct修饰符	
+<struct or union>	->	[union]	union修饰符	
+<data type definition name>	->	[IDN]	用户定义的数据类型的名称	
+<data type definition name>	->	[Lambda]	用户定义的数据类型无名称	
+<struct inner>	->	[Lambda]	结构体内部为空	
+<struct inner>	->	<variable statement><struct inner>	结构体内部为变量声明	
+<struct inner>	->	<data type definition><struct inner>	结构体内部定义数据类型	
+<base data type>	->	[int]	基本数据类型(int)	
+<base data type>	->	[float]	基本数据类型(float)	
+<base data type>	->	[double]	基本数据类型(double)	
+<base data type>	->	[char]	基本数据类型(char)	
+<base data type>	->	[short]	基本数据类型(short)	
+<base data type>	->	[short][int]	基本数据类型(short int)	
+<base data type>	->	[long]	基本数据类型(long)	
+<base data type>	->	[long][int]	基本数据类型(long int)	
+<base data type>	->	[long][long]	基本数据类型(long long)	
+<base data type>	->	[long][long][int]	基本数据类型(long long int)	
+<base data type>	->	[long][double]	基本数据类型(long double)	
+<base data type>	->	[void]	基本数据类型(void)	
+<variable list>	->	<single variable><variable list tail>	变量列表	
+<variable list tail>	->	[,]<pointer modifier><variable list>	多个变量	
+<variable list tail>	->	[Lambda]	变量列表结束	
+<single variable>	->	[IDN]<array tail><single variable tail>	单个变量描述	
+<array tail>	->	[[]<const value>[]]<array tail>	数组	
+<array tail>	->	[Lambda]	数组修饰结束	
+<single variable tail>	->	[=]<single variable init>	赋初值	
+<single variable tail>	->	[Lambda]	不赋初值	
+<single variable init>	->	[{]<single variable init><single variable init tail>[}]	数组或结构体赋初值	
+<single variable init>	->	<A>	一般表达式	
+<single variable init>	->	[{][}]	数组或结构体赋初值为0	
+<single variable init tail>	->	[,]<single variable init><single variable init tail>	多次赋值	
+<single variable init tail>	->	[Lambda]	多次赋值结束	
+<formal parameter list>	->	<data type>[IDN]<array in parameter><formal parameter list tail>	函数形式参数列表	
+<formal parameter list>	->	[Lambda]	函数形式参数列表为空	
+<formal parameter list>	->	[void]	函数形式参数列表为void	
+<formal parameter list tail>	->	[,]<data type>[IDN]<array in parameter><formal parameter list tail>	多个形式参数	
+<formal parameter list tail>	->	[Lambda]	形式参数参数结束	
+<formal parameter list tail>	->	[,][.][.][.]	不定量形参	
+<array in parameter>	->	[[]<const value>[]]<array in parameter>	形参里的数组指定大小	
+<array in parameter>	->	[[][]]	形参里的数组最后一维可以无大小限定	
+<array in parameter>	->	[Lambda]	形参数组结束	
+<block>	->	[{]<program body>[}]	语句块	
+<program body>	->	[Lambda]	程序体（为空）	
+<program body>	->	<program statement><program body>	程序体（程序语句）	
+<program body>	->	<block><program body>	程序体（语句块）	
+<program statement>	->	<variable statement>	程序语句（变量声明）	
+<program statement>	->	<data type definition>	程序语句（定义数据类型）	
+<program statement>	->	<run statement>	程序语句（运算语句）	
+<run statement>	->	<normal expr>[;]	运算语句（表达式语句）	
+<run statement>	->	[;]	运算语句（空语句）	
+<run statement>	->	[for][(]<normal expr>[;]<normal expr>[;]<normal expr>[)]<loop tail>	运算语句（for循环）	
+<run statement>	->	[while][(]<normal expr>[)]<loop tail>	运算语句（while循环）	
+<run statement>	->	[do]<block>[while](<normal expr>)[;]	运算语句（do while循环）	
+<run statement>	->	[if][(]<normal expr>[)]<loop tail><if tail>	运算语句（if条件判断）	
+<run statement>	->	[switch][(]<normal expr>[)][{]<case sentence>[}]	运算语句（switch条件判断）	
+<run statement>	->	[goto][IDN][;]	运算语句（goto语句）	
+<run statement>	->	[IDN][:]<loop tail>	运算语句（label标签）	label标签应该算一个修饰符，不能单独作为一个语句，不过为了语法分析方便，暂且放到这里
+<run statement>	->	[break][;]	运算语句（break）	
+<run statement>	->	[continue][;]	运算语句（continue）	
+<run statement>	->	[return]<normal expr>[;]	运算语句（return有返回值）	
+<run statement>	->	[return][;]	运算语句（return无返回值）	
+<loop tail>	->	<block>	if、while等下的语句（语句块）	
+<loop tail>	->	<run statement>	if、while等下的语句（单条可运行语句）	
+<if tail>	->	[else]<loop tail>	if结尾（有else)	
+<if tail>	->	[Lambda]	if结尾（无else）	
+<case sentence>	->	[Lambda]	case语句（为空）	
+<case sentence>	->	[case]<case const value>[:]<run sentences><case sentence>	case语句	
+<case sentence>	->	[default][:]<run sentences><case sentence>	default语句	
+<run sentences>	->	[Lambda]	case里的运行语句（为空）	
+<run sentences>	->	<loop tail><run sentences>	case里的运行语句	
+<case const value>	->	[INUM]	case里的常量（int)	
+<case const value>	->	[CH]	case里的常量（char)	
+<normal expr>	->	<normal expr>[,]<A>	表达式语句	
+<normal expr>	->	<A>	表达式语句（赋值）	
+<A>	->	[IDN]<sim14><A>	赋值语句	
+<A>	->	<B>	赋值语句（逗号表达式）	
+<B>	->	<B>[?]<B>[:]<B>	逗号表达式	
+<B>	->	<C>	逗号表达式（逻辑或）	
+<C>	->	<C>[||]<D>	逻辑或	
+<C>	->	<D>	逻辑或（逻辑与）	
+<D>	->	<D>[&&]<E>	逻辑与	
+<D>	->	<E>	逻辑与（按位或）	
+<E>	->	<E>[|]<F>	按位或	
+<E>	->	<F>	按位或（按位异或）	
+<F>	->	<F>[^]<G>	按位异或	
+<F>	->	<G>	按位异或（按位与）	
+<G>	->	<G>[&]<H>	按位与	
+<G>	->	<H>	按位与（相等或不等）	
+<H>	->	<H><sim7><I>	相等或不等	
+<H>	->	<I>	相等或不等（比较大小）	
+<I>	->	<I><sim6><J>	比较大小	
+<I>	->	<J>	比较大小（移位）	
+<J>	->	<J><sim5><K>	移位	
+<J>	->	<K>	移位（加减）	
+<K>	->	<K><sim4><L>	加减	
+<K>	->	<L>	加减（乘除余）	
+<L>	->	<L><sim3><M>	乘除余	
+<L>	->	<M>	乘除余（各种单目）	
+<M>	->	[!]<M>	逻辑非	
+<M>	->	[~]<M>	按位取反	
+<M>	->	[-]<M>	求负	
+<M>	->	[(]<data type>[)]<M>	强制类型转换	
+<M>	->	[*]<N>	间接寻址	
+<M>	->	[&]<N>	取地址	
+<M>	->	[++]<N>	增1（先增后用）	
+<M>	->	[--]<N>	减1（先减后用）	
+<M>	->	<N>[++]	增1（先用后增）	
+<M>	->	<N>[--]	减1（先用后减）	
+<M>	->	[sizeof][(]<normal expr>[)]	计算字节数	
+<M>	->	[sizeof]<M>	计算字节数	
+<M>	->	[sizeof][(]<data type>[)]	计算字节数	
+<M>	->	<const value>	常量	
+<M>	->	<N>	升级	
+<N>	->	[(]<normal expr>[)]	小括号	
+<N>	->	<N>[[]<normal expr>[]]	数组	
+<N>	->	<N>[->][IDN]	指向结构体成员	
+<N>	->	<N>[.][IDN]	引用结构体成员	
+<N>	->	[IDN]<may call func>	变量或函数	
+<N>	->	[STR][[]<normal expr>[]]	字符串常量	
+<may call func>	->	[(]<actual argument list>[)]	函数调用情况	
+<may call func>	->	[Lambda]	变量	
+<actual argument list>	->	<normal expr>	实参列表	
+<actual argument list>	->	[Lambda]	无实参	
+<sim3>	->	[*]	乘	
+<sim3>	->	[/]	除	
+<sim3>	->	[%]	余	
+<sim4>	->	[+]	加	
+<sim4>	->	[-]	减	
+<sim5>	->	[<<]	左移	
+<sim5>	->	[>>]	右移	
+<sim6>	->	[<]	小于	
+<sim6>	->	[<=]	小于等于	
+<sim6>	->	[>]	大于	
+<sim6>	->	[>=]	大于等于	
+<sim7>	->	[==]	等于	
+<sim7>	->	[!=]	不等于	
+<sim14>	->	[=]	赋值	
+<sim14>	->	[+=]	加等	
+<sim14>	->	[-=]	减等	
+<sim14>	->	[*=]	乘等	
+<sim14>	->	[/=]	除等	
+<sim14>	->	[%=]	余等	
+<sim14>	->	[|=]	或等	
+<sim14>	->	[&=]	与等	
+<sim14>	->	[^=]	异或等	
+<sim14>	->	[<<=]	左移等	
+<sim14>	->	[>>=]	右移等	
+<const value>	->	[INUM]	整数常量	
+<const value>	->	[FNUM]	浮点数常量	
+<const value>	->	[CH]	字符常量	
+<const value>	->	[STR]	字符串常量	
