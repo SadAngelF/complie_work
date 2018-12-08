@@ -145,7 +145,7 @@ def VAR_DE_():
         if(gettop()==';'):
             pop()
         else:
-            print("error,期望':'")
+            print("error,期望';'")
             exit(0)
     else:
         print("error,期望';'或变量初始化 VAR_DE_")
