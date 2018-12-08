@@ -17,12 +17,12 @@ def HEAD():
             pop()
             HEAD()
         else:
-            print("error")    
+            print("error,缺省'include' HEAD")    
             exit(0)
     elif(gettop()=='float' or gettop()=='double' or gettop()=='int'):
         pass
     else:
-        print("error")
+        print("error, HEAD")
         exit(0)
 def VS():
     VS_A()
@@ -32,14 +32,14 @@ def VS():
     elif(gettop()=='int' or gettop()=='float' or gettop()=='double'):
         VS()    
     else:
-        print("error")    
+        print("error,缺少返回值类型 VS")    
         exit(0)
 def VS_A():
     TYPE()
     if(gettop == 'var'):
         pop()
     else:
-        print("error")    
+        print("error,变量缺省 VS_A")    
         exit(0)
 def VS_B():
     if(gettop()=='('):
@@ -53,7 +53,7 @@ def VS_C():
         pop()
         VS_D()
     else:
-        print("error")
+        print("error,期望')' VS_C")
         exit(0)
 def VS_D():
     if(gettop()==';'):
@@ -64,10 +64,10 @@ def VS_D():
         if(gettop()=='}'):
             pop()
         else:
-            print("error")
+            print("error,期望'}' VS_D")
             exit(0)
     else:
-        print("error")
+        print("error,期望';' VS_D")
         exit(0)
 def FUN_B():
     VAR_DE()
@@ -83,16 +83,16 @@ def MAIN():
                 if(gettop()=='}'):
                     pop()
                 else:
-                    print("error")
+                    print("error,主函数缺省'}' MAIN")
                     exit(0)    
             else:
-                print("error")
+                print("error,主函数缺省'{' MAIN")
                 exit(0)    
         else:
-            print("error")
+            print("error,期望'mian' MAIN")
             exit(0)    
     else:
-        print("error")
+        print("error,主函数缺少返回值类型'int' MAIN")
         exit(0)         
 def F_PA():
     TYPE()
@@ -104,13 +104,13 @@ def F_PA():
             if(gettop()==')'):
                 pop()
             else:
-                print("error")
+                print("error,期望')' F_PA")
                 exit(0) 
         else:
-            print("error")
+            print("error,期望'(' F_PA")
             exit(0)      
     else:
-        print("error")
+        print("error,函数名错误或缺省 F_PA")
         exit(0) 
 def F_PA_():
     if(gettop()==';'):
@@ -119,7 +119,7 @@ def F_PA_():
     elif(gettop()==')'):
         pass
     else:
-        print("error")
+        print("error,参数表错误  F_PA_")
         exit(0)
 def VAR_DE():
     if(gettop()=='int' or gettop()=='float' or gettop()=='double'):
@@ -129,12 +129,12 @@ def VAR_DE():
             VAR_DE_()
             VAR_DE()
         else:
-            print("error")
+            print("error,变量定义错误 VAR_DE")
             exit(0)    
     elif(gettop()=='var'or gettop()=='for' or gettop()=='while' or gettop()=='if' or gettop()=='{' or gettop()=='}' or gettop()=='return'):
         pass
     else:
-        print("error")
+        print("error,变量定义错误 VAR_DE")
         exit(0)
 def VAR_DE_():
     if(gettop()==';'):
@@ -143,7 +143,7 @@ def VAR_DE_():
         pop()
         OB()
     else:
-        print("error")
+        print("error,期望';'或变量初始化 VAR_DE_")
         exit(0)
 def STATE():
     if(gettop()=='}'):
@@ -152,13 +152,13 @@ def STATE():
         B_STATE()
         STATE()
 def B_STATE():
-    if(gettop=='var'):
-        if(gettop2=='='):
+    if(gettop()=='var'):
+        if(gettop2()=='='):
             A_S()
-        elif(gettop2=='('):
+        elif(gettop2()=='('):
             FU_S()
         else:
-            print("error")
+            print("error,期望变量赋值或函数调用 B_STATE")
             exit(0)
     elif(gettop()=='while' or gettop()=='do' or gettop()=='for'):
         CY_S()
@@ -169,7 +169,7 @@ def B_STATE():
     elif(gettop()=='{'):
         MUL_S()
     else:
-        print("error")
+        print("error,B_STATE")
         exit(0)
 def A_S():
     if(gettop()=='var'):
@@ -180,13 +180,13 @@ def A_S():
             if(gettop()==';'):
                 pop()
             else:
-                print("error")
+                print("error,期望';'")
                 exit(0) 
         else:
-            print("error")
+            print("error,缺省赋值号 A_S")
             exit(0) 
     else:
-        print("error")
+        print("error,缺省被赋值变量 A_S")
         exit(0)                
 def OP_S():
     OB()
@@ -196,20 +196,20 @@ def OB():
     if(gettop()=='var' or gettop()=='const'):
         pop()                          
     else:
-        print("error")
+        print("error,期望'var'或'const' OB()")
         exit(0)
 def OP():
     if(gettop()=='+' or gettop()=='-' or gettop()=='*'or gettop()=='/'or gettop()=='%'):
         pop()
     else:
-        print("error")
+        print("error,缺省算术运算符 OP()")
         exit(0)
 def RE_S():
     if(gettop()=='return'):
         pop()
         OB()
     else:
-        print("error")
+        print("error,缺省'return' RE_S()")
         exit(0)   
 def FU_S():
     if(gettop()=='var'):
@@ -220,13 +220,13 @@ def FU_S():
             if(gettop()==")"):
                 pop()
             else:
-                print("error")
+                print("error,期望')' FU_S")
                 exit(0)
         else:
-            print("error")
+            print("error,期望'(' FU_S")
             exit(0)                    
     else:
-        print("error")
+        print("error,函数名错误 FU_S")
         exit(0)  
 def PA():
     if(gettop()==')'):
@@ -235,7 +235,7 @@ def PA():
         OB()
         PA_()
     else:
-        print("error")
+        print("error,(函数调用)参数错误 PA")
         exit(0)
 def PA_():
     if(gettop()==')'):
@@ -244,7 +244,7 @@ def PA_():
         pop()
         PA()
     else:
-        print("error") 
+        print("error,(函数调用)参数错误 PA_") 
         exit(0)
 def MUL_S():
     if(gettop()=='{'):
@@ -253,10 +253,10 @@ def MUL_S():
         if(gettop()=='}'):
             pop()
         else:
-            print("error") 
+            print("error,期望'}' MUL_S") 
             exit(0)
     else:
-        print("error")
+        print("error,期望'{' MUL_S")
         exit(0) 
 def CY_S():
     if(gettop()=='while'):
@@ -268,10 +268,10 @@ def CY_S():
                 pop()
                 MUL_S()
             else:
-                print("error") 
+                print("error,期望')' CY_S") 
                 exit(0)    
         else:
-            print("error") 
+            print("error,期望'(' CY_S") 
             exit(0)    
     elif(gettop()=='do'):
         pop()
@@ -284,10 +284,10 @@ def CY_S():
                 if(gettop()==')'):
                     pop()
                 else:
-                    print("error") 
+                    print("error,期望')' CY_S") 
                     exit(0)    
             else:
-                print("error") 
+                print("error,期望'(' CY_S") 
                 exit(0)    
         else:
             print("error") 
@@ -305,16 +305,16 @@ def CY_S():
                     pop()
                     MUL_S()
                 else:
-                    print("error") 
+                    print("error,期望')' CY_S") 
                     exit(0)   
             else:
-                print("error") 
+                print("error,期望';' CY_S") 
                 exit(0)    
         else:
-            print("error") 
+            print("error,期望'(' CY_S") 
             exit(0)
     else:
-        print("error") 
+        print("error,未识别到循环语句开始符 CY_S") 
         exit(0)          
 def FOR1():
     if(gettop==';'):
@@ -322,7 +322,7 @@ def FOR1():
     elif(gettop()=='var'):
         A_S()
     else:
-        print("error") 
+        print("error,for语句初始化部分错误 FOR1") 
         exit(0)
 def FOR3():
     if(gettop()==')'):
@@ -333,10 +333,10 @@ def FOR3():
             pop()
             OP_S()
         else:
-            print("error") 
+            print("error,期望'='") 
             exit(0)    
     else:
-        print("error") 
+        print("error,for语句迭代错误 FOR3") 
         exit(0)  
 def IF_S():
     if(gettop()=='if'):
@@ -349,13 +349,13 @@ def IF_S():
                 MUL_S()
                 IF_S_()
             else:
-                print("error") 
+                print("error,期望')' IF_S") 
                 exit(0)      
         else:
-            print("error") 
+            print("error,期望'(' IF_S") 
             exit(0)      
     else:
-        print("error") 
+        print("error,期望'if' IF_S") 
         exit(0)   
 def IF_S_():
     if(gettop()=='else'):
@@ -364,7 +364,7 @@ def IF_S_():
     elif(gettop()=='var'or gettop()=='for'or gettop()=='while'or gettop()=='if'or gettop()=='}'or gettop()=='{'or gettop()=='return'or gettop()=='do'):
         pass
     else:
-        print("error") 
+        print("error,if语句错误 IF_S_") 
         exit(0)    
 def CON():
     if(gettop()=='!'):
@@ -372,13 +372,13 @@ def CON():
         if(gettop()=='var'):
             pop()
         else:
-            print("error") 
+            print("error,期望'var' CON") 
             exit(0)
     elif(gettop()=='var' or gettop()=='const'):
         OB()
         CON_()
     else:
-        print("error") 
+        print("error,条件错误 CON") 
         exit(0)
 def CON_():
     if(gettop()==')'):
@@ -403,16 +403,16 @@ def CON_():
             pop()
             OB()
         else:
-            print("error") 
+            print("error,期望'='  CON_") 
             exit(0)
     else:
-        print("error") 
+        print("error,条件错误 CON_") 
         exit(0)                                                                       
 def TYPE():
     if(gettop()=='float'or gettop()=='int' or gettop()=='double'):
         pop()
     else:
-        print("error") 
+        print("error,无此变量类型  TYPE"  gettop()) 
         exit(0)      
 
 
