@@ -142,6 +142,11 @@ def VAR_DE_():
     elif(gettop()=='='):
         pop()
         OB()
+        if(gettop()==';'):
+            pop()
+        else:
+            print("error,期望':'")
+            exit(0)
     else:
         print("error,期望';'或变量初始化 VAR_DE_")
         exit(0)
