@@ -30,13 +30,13 @@ class yufa:
             else:
                 print("error,缺省< HEAD")    
                 exit(0)
-            self.HEAD()  
+            self.HEAD()
+            print("HEAD!")
         elif(self.gettop()=='113' or self.gettop()=='109' or self.gettop()=='117'):
             pass
         else:
             print("error, HEAD")
             exit(0)
-        print("HEAD!")
     def VS(self):
         self.VS_A()
         self.VS_B()
@@ -86,7 +86,7 @@ class yufa:
     def FUN_B(self):
         self.VAR_DE()
         self.STATE()
-        print("函数主体！")
+        print("语句块！")
     def MAIN(self):
         if(self.gettop()=='117'):
             self.pop()
@@ -146,13 +146,14 @@ class yufa:
                 self.VAR_DE()
             else:
                 print("error,变量定义错误 VAR_DE")
-                exit(0)    
+                exit(0)   
+            print("变量定义！")
         elif(self.gettop()=='301'or self.gettop()=='114' or self.gettop()=='132' or self.gettop()=='116' or self.gettop()=='216' or self.gettop()=='217' or self.gettop()=='120'):
             pass
         else:
             print("error,变量定义错误 VAR_DE")
             exit(0)
-        print("变量定义！")
+        
     def VAR_DE_(self):
         if(self.gettop()=='221'):
             self.pop()
@@ -208,8 +209,15 @@ class yufa:
         print("赋值语句！")               
     def OP_S(self):
         self.OB()
-        self.OP()
-        self.OB()
+        self.OP_S_()
+    def OP_S_(self):
+        if(self.gettop()=='201' or self.gettop()=='202' or self.gettop()=='203'or self.gettop()=='204'or self.gettop()=='209'):
+            self.OP()
+            self.OB()
+        elif(self.gettop()=='213' or self.gettop()=='221'):
+            pass
+        else:
+            print("error! 期待操作符或者;")
     def OB(self):
         if(self.gettop()=='301' or self.gettop()=='401'):
             self.pop()                          
