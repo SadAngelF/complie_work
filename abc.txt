@@ -1,1 +1,10 @@
-fzb
+#include<iostream>
+
+int main
+{
+   int a;
+   int b;
+   a=3+2;
+   if (a==3) {b=3+a;}
+     else {b=1+a;}
+}

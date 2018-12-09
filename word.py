@@ -5,6 +5,8 @@ class word:
     
     def __init__(self,name):
         self.keywards = {}
+        self.lines=[]
+        self.value=[]
 
         # 关键字部分
         self.keywards['auto'] = 101
@@ -40,6 +42,7 @@ class word:
         self.keywards['volatile'] = 131
         self.keywards['while'] = 132
         self.keywards['#include'] = 133
+        self.keywards['main'] = 134
 
         # 符号
         self.keywards['+'] = 201
@@ -148,6 +151,8 @@ class word:
 
     def save(self,string):
         if string in self.keywards.keys():
+            self.lines.append(str(self.keywards[string]))
+            self.value.append(string)
             if string not in self.signlist.keys():
                 self.signlist[string] = self.keywards[string]
         else:
@@ -159,6 +164,11 @@ class word:
 
 
     def save_var(self,string):
+        if len(string.strip()) < 1:
+            pass
+        else:
+            self.lines.append('301')
+            self.value.append(string)
         if string not in self.signlist.keys():
             if len(string.strip()) < 1:
                 pass
@@ -170,6 +180,8 @@ class word:
 
 
     def save_const(self,string):
+        self.lines.append('401')
+        self.value.append(string)
         if string not in self.signlist.keys():
             self.signlist[string] = 401
 
@@ -337,4 +349,15 @@ class word:
         self.recognition('file.tmp')
         for i in self.signlist.keys():
             print("(", self.signlist[i], ",", i, ")")
-    
+        self.dic_cont={}
+        for _ in self.value:
+            try:
+                float(_)
+                if (_.count('.')==1):
+                    lei='float'
+                    self.dic_cont[_]=[lei,float(_)]
+                else:
+                    lei='int'
+                    self.dic_cont[_]=[lei,int(_)]
+            except ValueError:
+                pass
