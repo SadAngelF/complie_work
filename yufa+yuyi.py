@@ -1,4 +1,3 @@
-table = {'x':['int',1],'y':['float',3.2]}    #table为符号表
 class yufa:
     def __init__(self, signal,signalname,table,command):
         self.signal = signal
